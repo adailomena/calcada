@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#14232e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="CalcAda">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+<link rel="stylesheet" href="./style.css">
+<title>CalcAda</title>
+</head>
+<body>
+<main class="app">
+  <header class="top">
+    <span class="brand">CalcAda</span>
+  </header>
+  <section id="history" class="history" aria-label="Histórico de cálculos"></section>
+  <div id="disp" class="disp" aria-live="polite">0</div>
+  <section class="keys" id="keys">
+    <button data-k="AC" class="fn">AC</button>
+    <button data-k="CL" class="fn">C</button>
+    <button data-k="BS" class="fn">⌫</button>
+    <button data-k="÷" class="op">÷</button>
+    <button data-k="(" class="fn">(</button>
+    <button data-k=")" class="fn">)</button>
+    <button data-k="%" class="fn">%</button>
+    <button data-k="×" class="op">×</button>
+    <button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button>
+    <button data-k="−" class="op">−</button>
+    <button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button>
+    <button data-k="+" class="op">+</button>
+    <button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button>
+    <button data-k="Ans" class="ans">Ans</button>
+    <button data-k="0">0</button>
+    <button data-k=",">,</button>
+    <button data-k="=" class="eq">=</button>
+  </section>
+</main>
+<div id="confirm" class="overlay" hidden>
+  <div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="dlgTitle" aria-describedby="dlgText">
+    <h2 id="dlgTitle">Apagar tudo?</h2>
+    <p id="dlgText">Isso limpa o histórico e a linha de operação. Não dá para desfazer.</p>
+    <div class="actions">
+      <button id="cancelAll" type="button" class="cancel">Cancelar</button>
+      <button id="doAll" type="button" class="danger">Apagar tudo</button>
+    </div>
+  </div>
+</div>
+<script src="./app.js"></script>
+</body>
+</html>
