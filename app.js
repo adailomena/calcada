@@ -11,6 +11,31 @@
     try { localStorage.setItem(KEY, JSON.stringify({ history: state.history })); } catch (e) {}
   }
 
+  var FS = [14, 16, 18, 20, 24, 28], FS_KEY = 'calcada.fs', TH_KEY = 'calcada.theme';
+  var fsIdx = 1;
+  try { var fv = localStorage.getItem(FS_KEY); if (/^[0-5]$/.test(fv)) fsIdx = +fv; } catch (e) {}
+  var fsDown = document.getElementById('fsDown'), fsUp = document.getElementById('fsUp');
+  function applyFs() {
+    document.documentElement.style.setProperty('--hfs', FS[fsIdx] + 'px');
+    fsDown.disabled = fsIdx === 0;
+    fsUp.disabled = fsIdx === FS.length - 1;
+    histEl.scrollTop = histEl.scrollHeight;
+  }
+  function setFs(i) {
+    if (i < 0 || i >= FS.length || i === fsIdx) return;
+    fsIdx = i;
+    try { localStorage.setItem(FS_KEY, String(i)); } catch (e) {}
+    applyFs();
+  }
+  fsDown.addEventListener('click', function () { setFs(fsIdx - 1); });
+  fsUp.addEventListener('click', function () { setFs(fsIdx + 1); });
+  document.getElementById('themeBtn').addEventListener('click', function () {
+    var root = document.documentElement, light = root.getAttribute('data-theme') !== 'light';
+    if (light) root.setAttribute('data-theme', 'light'); else root.removeAttribute('data-theme');
+    document.getElementById('themeColor').setAttribute('content', light ? '#eef3f6' : '#14232e');
+    try { localStorage.setItem(TH_KEY, light ? 'light' : 'dark'); } catch (e) {}
+  });
+
   var dispEl = document.getElementById('disp');
   var shown = '';
   var confirmEl = document.getElementById('confirm');
@@ -180,6 +205,8 @@
   confirmEl.addEventListener('click', function (ev) { if (ev.target === confirmEl) closeConfirm(); });
   document.addEventListener('keydown', function (ev) { if (ev.key === 'Escape' && !confirmEl.hidden) closeConfirm(); });
   render();
+  applyFs();
+  if (document.documentElement.getAttribute('data-theme') === 'light') document.getElementById('themeColor').setAttribute('content', '#eef3f6');
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {

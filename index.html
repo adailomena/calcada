@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta name="theme-color" content="#14232e">
+<meta name="theme-color" content="#14232e" id="themeColor">
+<script>(function(){var d=document.documentElement;try{var v=localStorage.getItem('calcada.fs');if(/^[0-5]$/.test(v))d.style.setProperty('--hfs',[14,16,18,20,24,28][+v]+'px')}catch(e){}try{if(localStorage.getItem('calcada.theme')==='light')d.setAttribute('data-theme','light')}catch(e){}})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="CalcAda">
@@ -17,6 +18,11 @@
 <main class="app">
   <header class="top">
     <span class="brand">CalcAda</span>
+    <div class="ctl">
+      <button id="fsDown" type="button" aria-label="Diminuir fonte do histórico">A−</button>
+      <button id="fsUp" type="button" aria-label="Aumentar fonte do histórico">A+</button>
+      <button id="themeBtn" type="button" aria-label="Alternar entre modo claro e escuro">◐</button>
+    </div>
   </header>
   <section id="history" class="history" aria-label="Histórico de cálculos"></section>
   <div id="disp" class="disp" aria-live="polite">0</div>
